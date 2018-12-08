@@ -20,6 +20,9 @@ exports.list_all_users = function (req, res) {
 
 
 exports.connecxion = function (req, res) {
+
+    res.contentType('application/json');
+
     if (req.header('auth') === 'flo') {
         var login = req.body.login;
         var password = req.body.password;
@@ -35,6 +38,7 @@ exports.connecxion = function (req, res) {
                     res.send(err);
                     res.json(user);
                 } else {
+                    console.log('connexion of user '+JSON.stringify(user));
                     res.send(user);
                 }
             });

@@ -1,4 +1,5 @@
 (function () {
+        var userDAO = new UserDAO();
 
         this.init = function () {
             window.addEventListener("hashchange", navigate);
@@ -20,12 +21,20 @@
         };
 
         var navigatToHome = function () {
-            window.location.hash = "";
+            window.location.hash = "#";
         };
 
 
-        var actionLogin = function () {
+        var actionLogin = function (login,password) {
+            var callbackConnexion = function(){
+                localStorage['user'] = JSON.stringify({
+                    "login":login,
+                    "password":password
+                })
+                navigatToHome();
+            }
 
+            userDAO.connexion(login,password,callbackConnexion)
         }
 
         init();

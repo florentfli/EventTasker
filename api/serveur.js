@@ -1,5 +1,5 @@
 require('babel-register')({
-    presets: [ 'env' ]
+    presets: ['env']
 });
 import "@babel/polyfill";
 
@@ -8,7 +8,7 @@ dotenv.load();
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-port = process.env.BDD_PORT || 8080;
+    port = process.env.BDD_PORT || 8080;
 
 
 const mysql = require('mysql');
@@ -28,7 +28,7 @@ app.listen(port);
 
 console.log('API server started on: ' + port);
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var routes = require('./api/route/routes');

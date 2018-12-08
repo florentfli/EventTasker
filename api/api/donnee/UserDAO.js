@@ -1,5 +1,6 @@
 'user strict';
 var sql = require('./DataBase');
+var md5 = require('js-md5');
 
 //Task object constructor
 var User = function(user){
@@ -7,7 +8,7 @@ var User = function(user){
     this.password = user.password;
 };
 User.connect = function createUser(login,password, result) {
-    sql.query("SELECT * FROM user WHERE login = ? AND password = ?", [login,password], function (err, res) {
+    sql.query("SELECT * FROM user WHERE login = ? AND password = ?", [login,md5(password)], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);

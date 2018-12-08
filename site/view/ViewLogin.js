@@ -22,16 +22,7 @@ var ViewLogin = (function () {
             console.log("login: " + login)
             console.log("password: " + password)
 
-            if (login === "flo" && password === "password") {
-                localStorage['user'] = JSON.stringify({
-                    "user":
-                        {
-                            "login": login,
-                            "password": password
-                        }
-                });
-                window.location.hash = "#"
-            }
+            actionLogin(login,password);
         }
     }
 })();
