@@ -1,10 +1,25 @@
 'use strict';
 
-var User = require('../donnee/UserDAO.js');
+var accessor = require('../donnee/model.js');
+
+exports.list_all_events = function (req, res) {
+    if (req.header('auth') === 'flo') {
+        accessor.getAllEvents(function (err, event) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(event);
+            }
+        });
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};
 
 exports.list_all_users = function (req, res) {
     if (req.header('auth') === 'flo') {
-        User.getAllUser(function (err, user) {
+        accessor.getAllUser(function (err, user) {
             if (err) {
                 res.send(err);
             }
@@ -33,7 +48,7 @@ exports.connecxion = function (req, res) {
             res.status(400).send({error: true, message: 'Please provide user/status'});
         }
         else {
-            User.connect(login, password, function (err, user) {
+            accessor.connect(login, password, function (err, user) {
                 if (err) {
                     res.send(err);
                     res.json(user);

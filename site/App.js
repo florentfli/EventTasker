@@ -1,5 +1,6 @@
 (function () {
         var userDAO = new UserDAO();
+        var eventDAO = new EventDAO();
 
         this.init = function () {
             window.addEventListener("hashchange", navigate);
@@ -11,8 +12,14 @@
             var hash = window.location.hash;
 
             if (!hash) {
+                checkIfConnected();
+
                 var viewListEvent = new ViewListEvent();
-                viewListEvent.show();
+                var callbackEvent = function (response) {
+                    viewListEvent.show(response);
+                };
+
+                eventDAO.listEvents(callbackEvent)
             }
             else if (hash.match(/^#login/)) {
                 var viewLogin = new ViewLogin(actionLogin);
