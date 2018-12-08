@@ -14,26 +14,34 @@ var ViewListEvent = (function () {
         return [year, month, day].join('-');
     }
 
+    function calculteDiffDate(date) {
+        var oneDay = 24*60*60*1000;
+        var today = new Date();
+
+        return Math.round(Math.abs((today.getTime() - date.getTime())/(oneDay)));
+    }
+
     return function (action) {
         //today.getFullYear()+'-'+ today.getMonth()+'-'+ today.getDay()
         this.show = function (listEvents) {
 
             document.getElementById("container").innerHTML = pageEvent;
 
-            console.log("Events : "+listEvents);
+            console.log("Events : " + listEvents);
 
             var listEvents = JSON.parse(listEvents);
             var today = new Date();
-            var res='';
+            var res = '';
 
-            for (var counter in listEvents){
+            for (var counter in listEvents) {
 
                 var event = listEvents[counter];
                 var dateEvent = new Date(event.date);
 
-                res+=' <tr>\n' +
-                    '                        <td>'+ event.name +'</td>\n' +
-                    '                        <td>'+formatDateDisplay(dateEvent)+'</td>\n' +
+                res += ' <tr>\n' +
+                    '                        <td>' + event.name + '</td>\n' +
+                    '                        <td>' + formatDateDisplay(dateEvent) + '</td>\n' +
+                    '                        <td>' + calculteDiffDate(dateEvent) + '</td>\n' +
                     '                        <td>\n' +
                     '                            <p data-placement="top" data-toggle="tooltip" title="Edit">\n' +
                     '                                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"\n' +
@@ -49,7 +57,7 @@ var ViewListEvent = (function () {
                     '                    </tr>';
             }
 
-            document.getElementById("today-date").innerHTML = '<h2>Today: '+ formatDateDisplay(today) +'</h2>';
+            document.getElementById("today-date").innerHTML = '<h2>Today: ' + formatDateDisplay(today) + '</h2>';
             document.getElementById("table-event").innerHTML = res;
 
         }
