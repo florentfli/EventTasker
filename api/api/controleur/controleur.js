@@ -1,4 +1,4 @@
-var utilisateurDAO = require('../donnee/UtilisateurDAO');
+var utilisateurDAO = require('../donnee/UserDAO');
 var fs = require('fs');
 
 var data;
@@ -14,10 +14,10 @@ fs.readFile('api/ressource/ressource-mots.txt', 'utf8', function (err,rawData) {
 
 exports.seConnecter = async function (requete, reponse) {
     try {
-        let pseudoUtilisateur = requete.body[utilisateurDAO.NOM_CHAMP_PSEUDO];
-        let passeUtilisateur = requete.body[utilisateurDAO.NOM_CHAMP_MOT_DE_PASSE];
+        let pseudoUtilisateur = requete.body[utilisateurDAO.NAME_LOGIN];
+        let passeUtilisateur = requete.body[utilisateurDAO.NAME_PASSWORD];
         console.log(requete.body);
-        const { rows : utilisateurs } = await utilisateurDAO.seConnecter(pseudoUtilisateur, passeUtilisateur);
+        const { rows : utilisateurs } = await utilisateurDAO.connect(pseudoUtilisateur, passeUtilisateur);
 
         if(typeof utilisateurs !== 'undefined' && utilisateurs.length > 0){
             return reponse.status(200).send(utilisateurs[0]);
@@ -32,8 +32,8 @@ exports.seConnecter = async function (requete, reponse) {
 exports.postUtilisateur = async function (requete, reponse) {
 
     try {
-        let pseudo = requete.body[utilisateurDAO.NOM_CHAMP_PSEUDO];
-        let passe = requete.body[utilisateurDAO.NOM_CHAMP_MOT_DE_PASSE];
+        let pseudo = requete.body[utilisateurDAO.NAME_LOGIN];
+        let passe = requete.body[utilisateurDAO.NAME_PASSWORD];
         let mail = requete.body[utilisateurDAO.NOM_CHAMP_MAIL];
         let telephone = requete.body[utilisateurDAO.NOM_CHAMP_TELEPHONE];
         let couleur = requete.body[utilisateurDAO.NOM_CHAMP_COULEUR];
@@ -45,7 +45,7 @@ exports.postUtilisateur = async function (requete, reponse) {
         if(!pseudo || !passe){
             return reponse.send('Pseudo ou mot de passe invalide');
         }
-        const { rows : utilisateur } = await utilisateurDAO.insererUtilisateur(pseudo, passe, mail, telephone, couleur, nbVictoire, dateNaissance);
+        const { rows : utilisateur } = await utilisateurDAO.addUser(pseudo, passe, mail, telephone, couleur, nbVictoire, dateNaissance);
 
         return reponse.status(200).send({ 'message': 'Insertion réussie'});
     } catch(error) {
