@@ -1,7 +1,7 @@
 {
-  "name": "projet-capture-nodejs",
+  "name": "eventtasker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dessynapse API\r Doc : https://web.postman.co/collections/4572983-a1c315b6-ded7-41b7-87c6-db396ca928d3?workspace=2e9858bf-43f7-44ee-85c2-a1dbc036f3f9",
   "main": "serveur.js",
   "scripts": {
     "start": "nodemon start.js",
@@ -17,7 +17,11 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "mysql": "^2.16.0"
   }
 }

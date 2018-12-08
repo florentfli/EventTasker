@@ -1,15 +1,44 @@
-var utilisateurDAO = require('../donnee/UserDAO');
-var fs = require('fs');
+'use strict';
 
-var data;
-fs.readFile('api/ressource/ressource-mots.txt', 'utf8', function (err,rawData) {
-    console.log("je commence à lire mon fichier");
-    if (err) {
-        return console.log(err);
+var User = require('../donnee/UserDAO.js');
+
+exports.list_all_users = function(req, res) {
+    User.getAllUser(function(err, user) {
+
+        console.log('controller')
+        if (err)
+            res.send(err);
+        console.log('res', user);
+        res.send(user);
+    });
+};
+
+
+
+exports.create_a_user = function(req, res) {
+    var new_user = new User(req.body);
+
+    //handles null error
+    if(!new_user.task || !new_user.status){
+
+        res.status(400).send({ error:true, message: 'Please provide user/status' });
+
     }
-    data = rawData.split('\n');
-    console.log("jai mes data")
-});
+    else{
+
+        User.createUser(new_user, function(err, task) {
+
+            if (err)
+                res.send(err);
+            res.json(task);
+        });
+    }
+};
+
+
+
+/*
+var utilisateurDAO = require('../donnee/UserDAO');
 
 
 exports.seConnecter = async function (requete, reponse) {
@@ -29,51 +58,36 @@ exports.seConnecter = async function (requete, reponse) {
     }
 };
 
+exports.listUsers= async function (requete, reponse) {
+    try {
+        const { rows : utilisateurs } = await utilisateurDAO.listUsers();
+
+        if(typeof utilisateurs !== 'undefined' && utilisateurs.length > 0){
+            return reponse.status(200).send(utilisateurs[0]);
+        }
+        return reponse.status(204).send();
+    } catch(error) {
+        console.log(error);
+        return reponse.status(400).send(error);
+    }
+};
+
 exports.postUtilisateur = async function (requete, reponse) {
 
     try {
         let pseudo = requete.body[utilisateurDAO.NAME_LOGIN];
         let passe = requete.body[utilisateurDAO.NAME_PASSWORD];
-        let mail = requete.body[utilisateurDAO.NOM_CHAMP_MAIL];
-        let telephone = requete.body[utilisateurDAO.NOM_CHAMP_TELEPHONE];
-        let couleur = requete.body[utilisateurDAO.NOM_CHAMP_COULEUR];
-        let dateNaissance = requete.body[utilisateurDAO.NOM_CHAMP_DATE_NAISSANCE];
-        let nbVictoire = requete.body[utilisateurDAO.NOM_CHAMP_NB_VICTOIRE];
         console.log(pseudo);
         console.log(passe);
 
         if(!pseudo || !passe){
             return reponse.send('Pseudo ou mot de passe invalide');
         }
-        const { rows : utilisateur } = await utilisateurDAO.addUser(pseudo, passe, mail, telephone, couleur, nbVictoire, dateNaissance);
+        const { rows : utilisateur } = await utilisateurDAO.addUser(pseudo, passe);
 
         return reponse.status(200).send({ 'message': 'Insertion réussie'});
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);
     }
-}
-
-exports.retournerMotAleatoire = function (requete, reponse) {
-
-    try {
-
-
-        function randomInt (low, high) {
-            console.log("je random un nombre");
-            return Math.floor(Math.random() * (high - low) + low);
-        }
-
-        function getRandomLine(){
-            console.log("je recupere ma ligne");
-            /** On recupérer le mot et on enléve les tab et les espaces */
-            return data[randomInt(0,data.length)].toString().replace(/[\t/\s]/g, '').split('\r\n');
-        }
-
-
-        return reponse.status(200).send({ mot: getRandomLine()});
-    } catch(error) {
-        console.log(error);
-        return reponse.status(400).send(error);
-    }
-}
+}*/

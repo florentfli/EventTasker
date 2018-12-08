@@ -10,7 +10,11 @@
             var hash = window.location.hash;
 
             if (!hash) {
-                var viewLogin = new ViewLogin();
+                var viewListEvent = new ViewListEvent();
+                viewListEvent.show();
+            }
+            else if (hash.match(/^#login/)) {
+                var viewLogin = new ViewLogin(actionLogin);
                 viewLogin.show();
             }
         };
@@ -19,6 +23,10 @@
             window.location.hash = "";
         };
 
+
+        var actionLogin = function () {
+
+        }
 
         init();
     }
