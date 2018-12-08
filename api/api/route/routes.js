@@ -8,6 +8,9 @@ module.exports = function(app) {
     app.route('/user')
         .get(controleur.list_all_users);
 
+    app.route('/connexion')
+        .post(controleur.connecxion);
+
     /*app.route('/tasks/:taskId')
         .get(todoList.read_a_task)
         .put(todoList.update_a_task)

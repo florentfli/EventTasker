@@ -3,32 +3,18 @@ var sql = require('./DataBase');
 
 //Task object constructor
 var User = function(user){
-    this.task = user.task;
-    this.status = user.status;
-    this.created_at = new Date();
+    this.login = user.login;
+    this.password = user.password;
 };
-User.createUser = function createUser(newUser, result) {
-    sql.query("INSERT INTO user set ?", newUser, function (err, res) {
-
+User.connect = function createUser(login,password, result) {
+    sql.query("SELECT * FROM user WHERE login = ? AND password = ?", [login,password], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
         }
         else{
-            console.log(res.insertId);
-            result(null, res.insertId);
-        }
-    });
-};
-User.getTaskById = function createUser(userId, result) {
-    sql.query("Select * from user where id = ? ", userId, function (err, res) {
-        if(err) {
-            console.log("error: ", err);
-            result(err, null);
-        }
-        else{
+            console.log(res);
             result(null, res);
-
         }
     });
 };

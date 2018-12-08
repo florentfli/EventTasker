@@ -2,39 +2,47 @@
 
 var User = require('../donnee/UserDAO.js');
 
-exports.list_all_users = function(req, res) {
-    User.getAllUser(function(err, user) {
-
-        console.log('controller')
-        if (err)
-            res.send(err);
-        console.log('res', user);
-        res.send(user);
-    });
-};
-
-
-
-exports.create_a_user = function(req, res) {
-    var new_user = new User(req.body);
-
-    //handles null error
-    if(!new_user.task || !new_user.status){
-
-        res.status(400).send({ error:true, message: 'Please provide user/status' });
-
-    }
-    else{
-
-        User.createUser(new_user, function(err, task) {
-
-            if (err)
+exports.list_all_users = function (req, res) {
+    if (req.header('auth') === 'flo') {
+        User.getAllUser(function (err, user) {
+            if (err) {
                 res.send(err);
-            res.json(task);
+            }
+            else {
+                console.log('res', user);
+                res.send(user);
+            }
         });
+    } else {
+        res.send('Error: Connexion denied.');
     }
 };
 
+
+exports.connecxion = function (req, res) {
+    if (req.header('auth') === 'flo') {
+        var login = req.body.login;
+        var password = req.body.password;
+        ;
+
+        //handles null error
+        if (!login || !password) {
+            res.status(400).send({error: true, message: 'Please provide user/status'});
+        }
+        else {
+            User.connect(login, password, function (err, user) {
+                if (err) {
+                    res.send(err);
+                    res.json(user);
+                } else {
+                    res.send(user);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};
 
 
 /*
