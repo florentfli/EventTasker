@@ -18,7 +18,7 @@ var ViewListEvent = (function () {
         var oneDay = 24*60*60*1000;
         var today = new Date();
 
-        return Math.round(Math.abs((today.getTime() - date.getTime())/(oneDay)));
+        return Math.ceil(Math.abs((today.getTime() - date.getTime())/(oneDay)));
     }
 
     return function (action) {

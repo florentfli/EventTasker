@@ -23,7 +23,7 @@ var ViewAddEvent = (function () {
 
             console.log("name: " + name)
 
-            if (checkDateLater(new Data(date)) && name && date && description && color){
+            if (checkDateLater(new Date(date)) && name && date && description && color){
                 actionAddEvent(name,date,description,color);
             } else{
                 location.reload();
