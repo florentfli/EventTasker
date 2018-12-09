@@ -59,17 +59,17 @@
 
         var actionDeleteEvent = function (id) {
             var callbackDelete = function () {
-                navigatToHome();
+                window.location.reload();
             };
 
             eventDAO.deleteEvent(id, callbackDelete)
         };
         var actionEditEvent = function (id) {
             var callbackConnexion = function () {
-                navigatToHome();
+                window.location.reload();
             }
 
-            eventDAO.addEvent(name, date, description, color, callbackConnexion)
+            eventDAO.editEvent(id,name, date, description, color, callbackConnexion)
         };
 
         init();
