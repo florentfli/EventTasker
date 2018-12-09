@@ -2,7 +2,7 @@ var ViewAddEvent = (function () {
 
     var pageAddEvent = document.getElementById("page-add-event").innerHTML;
 
-    return function (actionLogin) {
+    return function (actionAddEvent) {
 
         this.show = function () {
 
@@ -23,7 +23,18 @@ var ViewAddEvent = (function () {
 
             console.log("name: " + name)
 
-            //actionLogin(login,password);
+            if (checkDateLater(new Data(date)) && name && date && description && color){
+                actionAddEvent(name,date,description,color);
+            } else{
+                location.reload();
+            }
+        }
+
+        function checkDateLater(date) {
+            var oneDay = 24*60*60*1000;
+            var today = new Date();
+
+            return (Math.round(Math.abs((today.getTime() - date.getTime())/(oneDay)))) > 0;
         }
     }
 })();

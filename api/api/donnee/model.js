@@ -48,5 +48,17 @@ User.getAllEvents = function getAllEvents(result) {
         result(null, res);
     });
 };
+User.addEvent = function (name, date,description,color,result) {
+    sql.query("INSERT INTO event (name, description, date, color) VALUES (?,?,?,?)", [name,description,date,color], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else {
+            console.log(res);
+            result(null, res);
+        }
+    });
+};
 
 module.exports = User;

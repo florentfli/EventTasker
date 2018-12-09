@@ -26,7 +26,7 @@
                 viewLogin.show();
             }
             else if (hash.match(/^#add_event/)) {
-                var viewAddEvent = new ViewAddEvent();
+                var viewAddEvent = new ViewAddEvent(actionAddEvent);
                 viewAddEvent.show();
             }
         };
@@ -36,16 +36,24 @@
         };
 
 
-        var actionLogin = function (login,password) {
-            var callbackConnexion = function(){
+        var actionLogin = function (login, password) {
+            var callbackConnexion = function () {
                 localStorage['user'] = JSON.stringify({
-                    "login":login,
-                    "password":password
+                    "login": login,
+                    "password": password
                 })
                 navigatToHome();
             }
 
-            userDAO.connexion(login,password,callbackConnexion)
+            userDAO.connexion(login, password, callbackConnexion)
+        };
+
+        var actionAddEvent = function (name, date, description, color) {
+            var callbackConnexion = function () {
+                navigatToHome();
+            }
+
+            eventDAO.addEvent(name, date, description, color, callbackConnexion)
         }
 
         init();

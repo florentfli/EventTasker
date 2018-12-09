@@ -64,6 +64,37 @@ exports.connecxion = function (req, res) {
 };
 
 
+exports.add_event = function (req, res) {
+
+    res.contentType('application/json');
+
+    if (req.header('auth') === 'flo') {
+        var name = req.body.name;
+        var date = req.body.date;
+        var description = req.body.description;
+        var color = req.body.color;
+
+        //handles null error
+        if (!name || !date || !description || !color) {
+            res.status(400).send({error: true, message: 'Please provide name/date/descritpion/color'});
+        }
+        else {
+            accessor.addEvent(name, date,description,color, function (err, event) {
+                if (err) {
+                    res.send(err);
+                    res.json(event);
+                } else {
+                    console.log('Added event :'+JSON.stringify(event));
+                    res.send(event);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};
+
+
 /*
 var utilisateurDAO = require('../donnee/UserDAO');
 

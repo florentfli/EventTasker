@@ -17,7 +17,7 @@ module.exports = function (app) {
     app.route('/event')
         .get(controleur.list_all_events);
 
-    /*app.route('/event')
-        .post(controleur.add_event);*/
+    app.route('/event')
+        .post(controleur.add_event);
 
 };
