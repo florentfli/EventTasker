@@ -38,7 +38,7 @@ var ViewListEvent = (function () {
                 var event = listEvents[counter];
                 var dateEvent = new Date(event.date);
 
-                res += ' <tr>\n' +
+                res += ' <tr style="background: '+event.color+';!important;">' +
                     '                        <td>' + event.name + '</td>\n' +
                     '                        <td>' + formatDateDisplay(dateEvent) + '</td>\n' +
                     '                        <td>' + calculteDiffDate(dateEvent) + '</td>\n' +
@@ -54,6 +54,7 @@ var ViewListEvent = (function () {
                     '                                        data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>\n' +
                     '                            </p>\n' +
                     '                        </td>\n' +
+                    '                        <td><a class="btn btn-info btn-xs"  href="#event"><span class="glyphicon glyphicon-chevron-right"></span></a></td>\n' +
                     '                    </tr>';
             }
 

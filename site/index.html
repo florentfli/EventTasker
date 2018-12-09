@@ -6,19 +6,18 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
 </head>
 <body>
 
 <div id="wrap">
     <div id="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light p-1">
 
-            <a class="navbar-brand" href="#">M&F</a>
+            <a class="navbar-brand" href="#" id="brand">M&F</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -37,18 +36,15 @@
 
 
 <script type="text/html" id="page-list-event">
-    <h2>Heres some events lol</h2>
+    <h2 class="mt-3 mb-3">Incoming events</h2>
 
     <div class="row">
 
-
-        <div class="col-md-12 text-center">
+        <div class="col-lg-12 col-xs-12 text-center">
             <div id="today-date"></div>
 
             <div class="table-responsive">
-
-
-                <table id="mytable" class="table table-bordred table-striped text-center">
+                <table class="table table-bordred text-center zero">
 
                     <thead>
                         <th>Name</th>
@@ -56,38 +52,20 @@
                         <th>Days to go</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Details</th>
                     </thead>
+
                     <tbody id="table-event">
 
-                    <!-- <tr>
-                         <td><input type="checkbox" class="checkthis"/></td>
-                         <td>Mohsin</td>
-                         <td>Irshad</td>
-                         <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-                         <td>isometric.mohsin@gmail.com</td>
-                         <td>+923335586757</td>
-                         <td>
-                             <p data-placement="top" data-toggle="tooltip" title="Edit">
-                                 <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"
-                                         data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button>
-                             </p>
-                         </td>
-                         <td>
-                             <p data-placement="top" data-toggle="tooltip" title="Delete">
-                                 <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"
-                                         data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>
-                             </p>
-                         </td>
-                     </tr>-->
-
                     </tbody>
-
                 </table>
-
             </div>
 
+            <a class="btn btn-danger btn-circle mt-3" href="#add_event"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
     </div>
+
+
 
 
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
@@ -155,9 +133,8 @@
 </script>
 
 <script type="text/html" id="page-login">
-    <div class="row text-center">
-        <div class="col col-sm"></div>
-        <div class="col col-sm align-self-center mt-5">
+    <div class="text-center">
+        <div class="d-flex align-items-center justify-content-center mt-5">
             <form class="form-signin" id="form-login">
                 <!--<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -169,7 +146,6 @@
                 <input class="btn btn-lg btn-primary btn-block mt-3" type="submit" value="Sign in">
             </form>
         </div>
-        <div class="col col-sm"></div>
     </div>
 </script>
 
