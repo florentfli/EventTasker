@@ -14,7 +14,7 @@
             if (!hash) {
                 checkIfConnected();
 
-                var viewListEvent = new ViewListEvent(actionDeleteEvent,actionEditEvent);
+                var viewListEvent = new ViewListEvent(actionDeleteEvent, actionEditEvent);
 
                 var callbackEvent = function (response) {
                     viewListEvent.show(response);
@@ -29,6 +29,17 @@
             else if (hash.match(/^#add_event/)) {
                 var viewAddEvent = new ViewAddEvent(actionAddEvent);
                 viewAddEvent.show();
+            }
+            else if (hash.match(/^#event\/([0-9]+)/)) {
+                var navigation = hash.match(/^#event\/([0-9]+)/);
+                var idEvent = navigation[1];
+
+                var callbackEvent = function (event) {
+                    var viewEventDetail = new ViewEventDetail();
+                    viewEventDetail.show(event);
+                };
+
+                eventDAO.getEvent(idEvent, callbackEvent);
             }
         };
 
@@ -64,12 +75,12 @@
 
             eventDAO.deleteEvent(id, callbackDelete)
         };
-        var actionEditEvent = function (id,name, date, description, color) {
+        var actionEditEvent = function (id, name, date, description, color) {
             var callbackConnexion = function () {
                 window.location.reload();
             }
 
-            eventDAO.editEvent(id,name, date, description, color, callbackConnexion)
+            eventDAO.editEvent(id, name, date, description, color, callbackConnexion)
         };
 
         init();

@@ -45,6 +45,19 @@ User.getAllEvents = function getAllEvents(result) {
         }
     });
 };
+
+User.getEvent = function getAllEvents(id,result) {
+    sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
+
+        if (err) {
+            console.log("Error: ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
 User.addEvent = function (name, date, description, color, result) {
     sql.query("INSERT INTO event (name, description, date, color) VALUES (?,?,?,?)", [name, description, date, color], function (err, res) {
         if (err) {

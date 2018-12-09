@@ -35,7 +35,7 @@ var ViewListEvent = (function () {
                     '                                        data-target="#delete" data-id="' + event.id + '""><span class="glyphicon glyphicon-trash"></span></button>\n' +
                     '                            </p>\n' +
                     '                        </td>\n' +
-                    '                        <td><a class="btn btn-info btn-xs"  href="#event"><span class="glyphicon glyphicon-chevron-right"></span></a></td>\n' +
+                    '                        <td><a class="btn btn-info btn-xs"  href="#event\/' + event.id + '"><span class="glyphicon glyphicon-chevron-right"></span></a></td>\n' +
                     '                    </tr>';
             }
 

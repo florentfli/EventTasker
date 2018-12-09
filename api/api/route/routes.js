@@ -17,6 +17,9 @@ module.exports = function (app) {
     app.route('/event')
         .get(controleur.list_all_events);
 
+    app.route('/get_event')
+        .post(controleur.get_event);
+
     app.route('/event')
         .post(controleur.add_event);
 
@@ -25,5 +28,4 @@ module.exports = function (app) {
 
     app.route('/edit_event')
         .post(controleur.edit_event);
-
 };
