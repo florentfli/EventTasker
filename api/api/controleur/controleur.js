@@ -94,58 +94,29 @@ exports.add_event = function (req, res) {
     }
 };
 
+exports.delete_event = function (req, res) {
 
-/*
-var utilisateurDAO = require('../donnee/UserDAO');
+    res.contentType('application/json');
 
+    if (req.header('auth') === 'flo') {
+        var id = req.body.id;
 
-exports.seConnecter = async function (requete, reponse) {
-    try {
-        let pseudoUtilisateur = requete.body[utilisateurDAO.NAME_LOGIN];
-        let passeUtilisateur = requete.body[utilisateurDAO.NAME_PASSWORD];
-        console.log(requete.body);
-        const { rows : utilisateurs } = await utilisateurDAO.connect(pseudoUtilisateur, passeUtilisateur);
-
-        if(typeof utilisateurs !== 'undefined' && utilisateurs.length > 0){
-            return reponse.status(200).send(utilisateurs[0]);
+        //handles null error
+        if (!id) {
+            res.status(400).send({error: true, message: 'Please provide id'});
         }
-        return reponse.status(204).send();
-    } catch(error) {
-        console.log(error);
-        return reponse.status(400).send(error);
+        else {
+            accessor.deleteEvent(id, function (err, event) {
+                if (err) {
+                    res.send(err);
+                    res.json(event);
+                } else {
+                    console.log('Deleted event :'+JSON.stringify(event));
+                    res.send(event);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
     }
 };
-
-exports.listUsers= async function (requete, reponse) {
-    try {
-        const { rows : utilisateurs } = await utilisateurDAO.listUsers();
-
-        if(typeof utilisateurs !== 'undefined' && utilisateurs.length > 0){
-            return reponse.status(200).send(utilisateurs[0]);
-        }
-        return reponse.status(204).send();
-    } catch(error) {
-        console.log(error);
-        return reponse.status(400).send(error);
-    }
-};
-
-exports.postUtilisateur = async function (requete, reponse) {
-
-    try {
-        let pseudo = requete.body[utilisateurDAO.NAME_LOGIN];
-        let passe = requete.body[utilisateurDAO.NAME_PASSWORD];
-        console.log(pseudo);
-        console.log(passe);
-
-        if(!pseudo || !passe){
-            return reponse.send('Pseudo ou mot de passe invalide');
-        }
-        const { rows : utilisateur } = await utilisateurDAO.addUser(pseudo, passe);
-
-        return reponse.status(200).send({ 'message': 'Insertion réussie'});
-    } catch(error) {
-        console.log(error);
-        return reponse.status(400).send(error);
-    }
-}*/

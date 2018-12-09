@@ -60,5 +60,17 @@ User.addEvent = function (name, date,description,color,result) {
         }
     });
 };
+User.deleteEvent = function (id,result) {
+    sql.query("DELETE FROM event WHERE id = ?", [id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else {
+            console.log(res);
+            result(null, res);
+        }
+    });
+};
 
 module.exports = User;

@@ -14,7 +14,8 @@
             if (!hash) {
                 checkIfConnected();
 
-                var viewListEvent = new ViewListEvent();
+                var viewListEvent = new ViewListEvent(actionDeleteEvent,actionEditEvent);
+
                 var callbackEvent = function (response) {
                     viewListEvent.show(response);
                 };
@@ -54,7 +55,22 @@
             }
 
             eventDAO.addEvent(name, date, description, color, callbackConnexion)
-        }
+        };
+
+        var actionDeleteEvent = function (id) {
+            var callbackDelete = function () {
+                navigatToHome();
+            };
+
+            eventDAO.deleteEvent(id, callbackDelete)
+        };
+        var actionEditEvent = function (id) {
+            var callbackConnexion = function () {
+                navigatToHome();
+            }
+
+            eventDAO.addEvent(name, date, description, color, callbackConnexion)
+        };
 
         init();
     }

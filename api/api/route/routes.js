@@ -20,4 +20,7 @@ module.exports = function (app) {
     app.route('/event')
         .post(controleur.add_event);
 
+    app.route('/delete_event')
+        .post(controleur.delete_event);
+
 };

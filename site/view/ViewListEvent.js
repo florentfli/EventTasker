@@ -21,7 +21,7 @@ var ViewListEvent = (function () {
         return Math.ceil(Math.abs((today.getTime() - date.getTime())/(oneDay)));
     }
 
-    return function (action) {
+    return function (actionDelete, actionEdit) {
         //today.getFullYear()+'-'+ today.getMonth()+'-'+ today.getDay()
         this.show = function (listEvents) {
 
@@ -51,7 +51,7 @@ var ViewListEvent = (function () {
                     '                        <td>\n' +
                     '                            <p data-placement="top" data-toggle="tooltip" title="Delete">\n' +
                     '                                <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal"\n' +
-                    '                                        data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>\n' +
+                    '                                        data-target="#delete" data-id="'+event.id+'""><span class="glyphicon glyphicon-trash"></span></button>\n' +
                     '                            </p>\n' +
                     '                        </td>\n' +
                     '                        <td><a class="btn btn-info btn-xs"  href="#event"><span class="glyphicon glyphicon-chevron-right"></span></a></td>\n' +
@@ -61,6 +61,19 @@ var ViewListEvent = (function () {
             document.getElementById("today-date").innerHTML = '<h2>Today: ' + formatDateDisplay(today) + '</h2>';
             document.getElementById("table-event").innerHTML = res;
 
+
+            var id = null;
+            $(document).ready(function(){
+                $("#btnDeleteEvent").click(function(){
+                    console.log('delete ' +id);
+                    actionDelete(id);
+                });
+            });
+            $('#delete').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                id = button.data('id');
+                console.log('id event want to delete : '+id);
+            })
         }
     }
 })();
