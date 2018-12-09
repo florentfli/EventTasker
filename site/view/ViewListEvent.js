@@ -39,7 +39,7 @@ var ViewListEvent = (function () {
                     '                    </tr>';
             }
 
-            document.getElementById("today-date").innerHTML = '<h2>Today: ' + formatDateDisplay(today) + '</h2>';
+            document.getElementById("today-date").innerHTML = '<h5>Today: ' + formatDateDisplay(today) + '</h5>';
             document.getElementById("table-event").innerHTML = res;
 
 
