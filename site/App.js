@@ -25,6 +25,10 @@
                 var viewLogin = new ViewLogin(actionLogin);
                 viewLogin.show();
             }
+            else if (hash.match(/^#add_event/)) {
+                var viewAddEvent = new ViewAddEvent();
+                viewAddEvent.show();
+            }
         };
 
         var navigatToHome = function () {
