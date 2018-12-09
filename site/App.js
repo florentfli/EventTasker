@@ -64,7 +64,7 @@
 
             eventDAO.deleteEvent(id, callbackDelete)
         };
-        var actionEditEvent = function (id) {
+        var actionEditEvent = function (id,name, date, description, color) {
             var callbackConnexion = function () {
                 window.location.reload();
             }

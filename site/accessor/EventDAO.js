@@ -64,6 +64,7 @@ var EventDAO = function () {
         var url = API_URL + "/edit_event";
         var request = new XMLHttpRequest();
         var data = JSON.stringify({
+            "id":id,
             "name":name,
             "description":description,
             "date":date,
