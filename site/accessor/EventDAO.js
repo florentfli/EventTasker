@@ -60,8 +60,8 @@ var EventDAO = function () {
         request.send(data);
     };
 
-    this.updateEvent = function (id,name,date,description,color,callback) {
-        var url = API_URL + "/event";
+    this.editEvent = function (id,name,date,description,color,callback) {
+        var url = API_URL + "/edit_event";
         var request = new XMLHttpRequest();
         var data = JSON.stringify({
             "name":name,

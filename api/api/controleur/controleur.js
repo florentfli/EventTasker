@@ -120,3 +120,35 @@ exports.delete_event = function (req, res) {
         res.send('Error: Connexion denied.');
     }
 };
+
+
+exports.edit_event = function (req, res) {
+
+    res.contentType('application/json');
+
+    if (req.header('auth') === 'flo') {
+        var id = req.body.id;
+        var name = req.body.name;
+        var date = req.body.date;
+        var description = req.body.description;
+        var color = req.body.color;
+
+        //handles null error
+        if (!id || !name || !date || !description || !color) {
+            res.status(400).send({error: true, message: 'Please provide id/name/date/description/color'});
+        }
+        else {
+            accessor.editEvent(id,name,description,date,color, function (err, event) {
+                if (err) {
+                    res.send(err);
+                    res.json(event);
+                } else {
+                    console.log('Edited event :'+JSON.stringify(event));
+                    res.send(event);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};

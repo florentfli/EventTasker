@@ -15,7 +15,6 @@ User.connect = function createUser(login, password, result) {
             result(err, null);
         }
         else {
-            console.log(res);
             result(null, res);
         }
     });
@@ -27,10 +26,9 @@ User.getAllUser = function getAllUser(result) {
             console.log("error: ", err);
             result(err, null);
         }
-
-        console.log('users : ', res);
-
-        result(null, res);
+        else {
+            result(null, res);
+        }
 
     });
 };
@@ -42,32 +40,40 @@ User.getAllEvents = function getAllEvents(result) {
             console.log("Error: ", err);
             result(err, null);
         }
-
-        console.log('Events : ', res);
-
-        result(null, res);
+        else {
+            result(null, res);
+        }
     });
 };
-User.addEvent = function (name, date,description,color,result) {
-    sql.query("INSERT INTO event (name, description, date, color) VALUES (?,?,?,?)", [name,description,date,color], function (err, res) {
+User.addEvent = function (name, date, description, color, result) {
+    sql.query("INSERT INTO event (name, description, date, color) VALUES (?,?,?,?)", [name, description, date, color], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
         }
         else {
-            console.log(res);
             result(null, res);
         }
     });
 };
-User.deleteEvent = function (id,result) {
+User.deleteEvent = function (id, result) {
     sql.query("DELETE FROM event WHERE id = ?", [id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
         }
         else {
-            console.log(res);
+            result(null, res);
+        }
+    });
+};
+User.editEvent = function (id, name, description, date, color, result) {
+    sql.query("UPDATE event SET name = ?, date = ?, description = ?,  color = ? WHERE id = ?", [name,date,description,color,id], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else {
             result(null, res);
         }
     });

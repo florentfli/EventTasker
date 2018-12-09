@@ -23,4 +23,7 @@ module.exports = function (app) {
     app.route('/delete_event')
         .post(controleur.delete_event);
 
+    app.route('/edit_event')
+        .post(controleur.edit_event);
+
 };
