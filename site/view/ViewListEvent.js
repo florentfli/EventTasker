@@ -2,25 +2,6 @@ var ViewListEvent = (function () {
 
     var pageEvent = document.getElementById("page-list-event").innerHTML;
 
-    function formatDateDisplay(date) {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-
-        return [year, month, day].join('-');
-    }
-
-    function calculteDiffDate(date) {
-        var oneDay = 24*60*60*1000;
-        var today = new Date();
-
-        return Math.ceil(Math.abs((today.getTime() - date.getTime())/(oneDay)));
-    }
-
     return function (actionDelete, actionEdit) {
         //today.getFullYear()+'-'+ today.getMonth()+'-'+ today.getDay()
         this.show = function (listEvents) {
@@ -45,7 +26,7 @@ var ViewListEvent = (function () {
                     '                        <td>\n' +
                     '                            <p data-placement="top" data-toggle="tooltip" title="Edit">\n' +
                     '                                <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal"\n' +
-                    '                                        data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button>\n' +
+                    '                                        data-target="#edit" data-id="'+event.id+'"><span class="glyphicon glyphicon-pencil"></span></button>\n' +
                     '                            </p>\n' +
                     '                        </td>\n' +
                     '                        <td>\n' +
@@ -62,7 +43,38 @@ var ViewListEvent = (function () {
             document.getElementById("table-event").innerHTML = res;
 
 
-            var id = null;
+            var id;
+            var name;
+            var date;
+            var description;
+            var color;
+
+            $(document).ready(function(){
+                $("#btnEditEvent").click(function(){
+                    console.log('edit ' +id);
+                    //actionDelete(id);
+                });
+            });
+            $('#edit').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                id = button.data('id');
+
+                for (var counter in listEvents){
+                    var event = listEvents[counter];
+                    if (event.id === id){
+                        console.log('want to edit event : '+ event);
+                        $('#editName').val(event.name);
+                        $('#editDate').val(formatDateDisplay(event.date));
+                        $('#editDescription').val(event.description);
+                        $('#editColor').val(event.color);
+                        break;
+                    }
+                }
+
+                console.log('id event want to delete : '+id);
+            });
+
+
             $(document).ready(function(){
                 $("#btnDeleteEvent").click(function(){
                     console.log('delete ' +id);
