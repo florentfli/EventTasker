@@ -34,7 +34,7 @@ User.getAllUser = function getAllUser(result) {
 };
 
 User.getAllEvents = function getAllEvents(result) {
-    sql.query("Select * from event", function (err, res) {
+    sql.query("Select * from event WHERE date >= NOW() ORDER BY date", function (err, res) {
 
         if (err) {
             console.log("Error: ", err);
