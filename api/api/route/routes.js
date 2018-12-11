@@ -28,4 +28,14 @@ module.exports = function (app) {
 
     app.route('/edit_event')
         .post(controleur.edit_event);
+
+    app.route('/counter')
+        .get(controleur.get_counter);
+
+    /*app.route('/counter/plus')
+        .get(controleur.plus_counter);
+
+    app.route('/counter/minus')
+        .get(controleur.minus_counter);*/
+
 };

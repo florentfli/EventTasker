@@ -3,12 +3,12 @@ var sql = require('./DataBase');
 var md5 = require('js-md5');
 
 //Task object constructor
-var User = function (user) {
+var Accessor = function (user) {
     this.login = user.login;
     this.password = user.password;
 };
 
-User.connect = function createUser(login, password, result) {
+Accessor.connect = function createUser(login, password, result) {
     sql.query("SELECT * FROM user WHERE login = ? AND password = ?", [login, md5(password)], function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -19,7 +19,7 @@ User.connect = function createUser(login, password, result) {
         }
     });
 };
-User.getAllUser = function getAllUser(result) {
+Accessor.getAllUser = function getAllUser(result) {
     sql.query("Select * from user", function (err, res) {
 
         if (err) {
@@ -33,7 +33,7 @@ User.getAllUser = function getAllUser(result) {
     });
 };
 
-User.getAllEvents = function getAllEvents(result) {
+Accessor.getAllEvents = function getAllEvents(result) {
     sql.query("Select * from event WHERE date >= NOW() ORDER BY date", function (err, res) {
 
         if (err) {
@@ -46,7 +46,7 @@ User.getAllEvents = function getAllEvents(result) {
     });
 };
 
-User.getEvent = function getAllEvents(id,result) {
+Accessor.getEvent = function getAllEvents(id,result) {
     sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
 
         if (err) {
@@ -58,7 +58,7 @@ User.getEvent = function getAllEvents(id,result) {
         }
     });
 };
-User.addEvent = function (name, date, description, color, result) {
+Accessor.addEvent = function (name, date, description, color, result) {
     sql.query("INSERT INTO event (name, description, date, color) VALUES (?,?,?,?)", [name, description, date, color], function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -69,7 +69,7 @@ User.addEvent = function (name, date, description, color, result) {
         }
     });
 };
-User.deleteEvent = function (id, result) {
+Accessor.deleteEvent = function (id, result) {
     sql.query("DELETE FROM event WHERE id = ?", [id], function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -80,7 +80,7 @@ User.deleteEvent = function (id, result) {
         }
     });
 };
-User.editEvent = function (id, name, description, date, color, result) {
+Accessor.editEvent = function (id, name, description, date, color, result) {
     sql.query("UPDATE event SET name = ?, date = ?, description = ?,  color = ? WHERE id = ?", [name,date,description,color,id], function (err, res) {
         if (err) {
             console.log("error: ", err);
@@ -92,4 +92,43 @@ User.editEvent = function (id, name, description, date, color, result) {
     });
 };
 
-module.exports = User;
+Accessor.getCounter = function(result) {
+    sql.query("Select * from counter", function (err, res) {
+
+        if (err) {
+            console.log("Error : ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+/*
+Accessor.getEvent = function getAllEvents(id,result) {
+    sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
+
+        if (err) {
+            console.log("Error: ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+Accessor.getEvent = function getAllEvents(id,result) {
+    sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
+
+        if (err) {
+            console.log("Error: ", err);
+            result(err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};*/
+
+module.exports = Accessor;

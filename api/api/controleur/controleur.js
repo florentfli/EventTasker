@@ -53,7 +53,7 @@ exports.connecxion = function (req, res) {
                     res.send(err);
                     res.json(user);
                 } else {
-                    console.log('connexion of user '+JSON.stringify(user));
+                    console.log('connexion of user ' + JSON.stringify(user));
                     res.send(user);
                 }
             });
@@ -79,12 +79,12 @@ exports.add_event = function (req, res) {
             res.status(400).send({error: true, message: 'Please provide name/date/descritpion/color'});
         }
         else {
-            accessor.addEvent(name, date,description,color, function (err, event) {
+            accessor.addEvent(name, date, description, color, function (err, event) {
                 if (err) {
                     res.send(err);
                     res.json(event);
                 } else {
-                    console.log('Added event :'+JSON.stringify(event));
+                    console.log('Added event :' + JSON.stringify(event));
                     res.send(event);
                 }
             });
@@ -111,7 +111,7 @@ exports.delete_event = function (req, res) {
                     res.send(err);
                     res.json(event);
                 } else {
-                    console.log('Deleted event :'+JSON.stringify(event));
+                    console.log('Deleted event :' + JSON.stringify(event));
                     res.send(event);
                 }
             });
@@ -138,12 +138,12 @@ exports.edit_event = function (req, res) {
             res.status(400).send({error: true, message: 'Please provide id/name/date/description/color'});
         }
         else {
-            accessor.editEvent(id,name,description,date,color, function (err, event) {
+            accessor.editEvent(id, name, description, date, color, function (err, event) {
                 if (err) {
                     res.send(err);
                     res.json(event);
                 } else {
-                    console.log('Edited event :'+JSON.stringify(event));
+                    console.log('Edited event :' + JSON.stringify(event));
                     res.send(event);
                 }
             });
@@ -171,7 +171,7 @@ exports.get_event = function (req, res) {
                     res.send(err);
                     res.json(event);
                 } else {
-                    console.log('Event :'+JSON.stringify(event));
+                    console.log('Event :' + JSON.stringify(event));
                     res.send(event);
                 }
             });
@@ -180,3 +180,80 @@ exports.get_event = function (req, res) {
         res.send('Error: Connexion denied.');
     }
 };
+
+
+exports.get_counter = function (req, res) {
+
+    res.contentType('application/json');
+
+    if (req.header('auth') === 'flo') {
+        accessor.getCounter(function (err, counter) {
+            if (err) {
+                res.send(err);
+                res.json(counter);
+            } else {
+                console.log('get counter :' + JSON.stringify(counter));
+                res.send(counter);
+            }
+        });
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};
+
+/*
+
+exports.get_event = function (req, res) {
+
+    res.contentType('application/json');
+
+    if (req.header('auth') === 'flo') {
+        var id = req.body.id;
+
+        //handles null error
+        if (!id) {
+            res.status(400).send({error: true, message: 'Please provide id'});
+        }
+        else {
+            accessor.getEvent(id, function (err, event) {
+                if (err) {
+                    res.send(err);
+                    res.json(event);
+                } else {
+                    console.log('Event :' + JSON.stringify(event));
+                    res.send(event);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};
+
+
+exports.get_event = function (req, res) {
+
+    res.contentType('application/json');
+
+    if (req.header('auth') === 'flo') {
+        var id = req.body.id;
+
+        //handles null error
+        if (!id) {
+            res.status(400).send({error: true, message: 'Please provide id'});
+        }
+        else {
+            accessor.getEvent(id, function (err, event) {
+                if (err) {
+                    res.send(err);
+                    res.json(event);
+                } else {
+                    console.log('Event :' + JSON.stringify(event));
+                    res.send(event);
+                }
+            });
+        }
+    } else {
+        res.send('Error: Connexion denied.');
+    }
+};*/

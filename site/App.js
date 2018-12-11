@@ -1,6 +1,7 @@
 (function () {
         var userDAO = new UserDAO();
         var eventDAO = new EventDAO();
+        var counterDAO = new CounterDAO();
 
         this.init = function () {
             window.addEventListener("hashchange", navigate);
@@ -41,6 +42,10 @@
 
                 eventDAO.getEvent(idEvent, callbackEvent);
             }
+            else if (hash.match(/^#counter/)) {
+                var viewCounter = new ViewCounter(actionPlusCounter,actionMinusCounter);
+                viewCounter.show();
+            }
         };
 
         var navigatToHome = function () {
@@ -55,7 +60,7 @@
                     "password": password
                 })
                 navigatToHome();
-            }
+            };
 
             userDAO.connexion(login, password, callbackConnexion)
         };
@@ -63,7 +68,7 @@
         var actionAddEvent = function (name, date, description, color) {
             var callbackConnexion = function () {
                 navigatToHome();
-            }
+            };
 
             eventDAO.addEvent(name, date, description, color, callbackConnexion)
         };
@@ -78,10 +83,17 @@
         var actionEditEvent = function (id, name, date, description, color) {
             var callbackConnexion = function () {
                 window.location.reload();
-            }
+            };
 
             eventDAO.editEvent(id, name, date, description, color, callbackConnexion)
         };
+
+        var actionPlusCounter = function(){
+
+        }
+        var actionMinusCounter = function(){
+
+        }
 
         init();
     }
