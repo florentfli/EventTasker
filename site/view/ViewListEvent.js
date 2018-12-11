@@ -8,6 +8,10 @@ var ViewListEvent = (function () {
 
             document.getElementById("container").innerHTML = pageEvent;
 
+            document.getElementById('list-menu').innerHTML= '<li class="nav-item active">\n' +
+                '                        <a class="nav-link" href="#">Counter<span class="sr-only">(current)</span></a>\n' +
+                '                    </li>';
+
             console.log("Events : " + listEvents);
 
             var listEvents = JSON.parse(listEvents);

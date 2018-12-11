@@ -5,6 +5,10 @@ var ViewEventDetail = (function () {
     return function () {
         this.show = function (event) {
 
+            document.getElementById('list-menu').innerHTML= '<li class="nav-item active">\n' +
+                '                        <a class="nav-link" href="#">Events <span class="sr-only">(current)</span></a>\n' +
+                '                    </li>';
+
             var event = event.substring(1, event .length-1);
             event = JSON.parse(event);
             console.log(event.color);

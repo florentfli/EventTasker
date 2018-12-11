@@ -8,6 +8,13 @@ var ViewAddEvent = (function () {
 
             document.getElementById("container").innerHTML = pageAddEvent;
 
+            document.getElementById('list-menu').innerHTML= '<li class="nav-item active">\n' +
+                '                        <a class="nav-link" href="#">Events<span class="sr-only">(current)</span></a>' +
+                '                    </li>' +
+                '<li class="nav-item active">' +
+                '<a class="nav-link" href="#counter">Counter<span class="sr-only">(current)</span></a>' +
+                '</li>';
+
             var formLogin = document.getElementById("form-add-event");
 
             formLogin.addEventListener("submit", addEvent);
@@ -21,14 +28,12 @@ var ViewAddEvent = (function () {
             var description = document.getElementById("description").value;
             var color = document.getElementById("color").value;
 
-            console.log("name: " + name)
-
             if (checkDateLater(new Date(date)) && name && date && description && color){
                 actionAddEvent(name,date,description,color);
             } else{
                 location.reload();
             }
-        }
+        };
 
         function checkDateLater(date) {
             var oneDay = 24*60*60*1000;
