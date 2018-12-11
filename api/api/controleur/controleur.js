@@ -201,59 +201,45 @@ exports.get_counter = function (req, res) {
     }
 };
 
-/*
 
-exports.get_event = function (req, res) {
+exports.plus_counter = function (req, res) {
 
     res.contentType('application/json');
 
     if (req.header('auth') === 'flo') {
-        var id = req.body.id;
 
-        //handles null error
-        if (!id) {
-            res.status(400).send({error: true, message: 'Please provide id'});
-        }
-        else {
-            accessor.getEvent(id, function (err, event) {
-                if (err) {
-                    res.send(err);
-                    res.json(event);
-                } else {
-                    console.log('Event :' + JSON.stringify(event));
-                    res.send(event);
-                }
-            });
-        }
+        accessor.plusCounter(function (err, event) {
+            if (err) {
+                res.send(err);
+                res.json(event);
+            } else {
+                console.log('Event :' + JSON.stringify(event));
+                res.send(event);
+            }
+        });
+
     } else {
         res.send('Error: Connexion denied.');
     }
 };
 
 
-exports.get_event = function (req, res) {
+exports.minus_counter = function (req, res) {
 
     res.contentType('application/json');
 
     if (req.header('auth') === 'flo') {
-        var id = req.body.id;
+        accessor.minusCounter(function (err, event) {
+            if (err) {
+                res.send(err);
+                res.json(event);
+            } else {
+                console.log('Event :' + JSON.stringify(event));
+                res.send(event);
+            }
+        });
 
-        //handles null error
-        if (!id) {
-            res.status(400).send({error: true, message: 'Please provide id'});
-        }
-        else {
-            accessor.getEvent(id, function (err, event) {
-                if (err) {
-                    res.send(err);
-                    res.json(event);
-                } else {
-                    console.log('Event :' + JSON.stringify(event));
-                    res.send(event);
-                }
-            });
-        }
     } else {
         res.send('Error: Connexion denied.');
     }
-};*/
+};

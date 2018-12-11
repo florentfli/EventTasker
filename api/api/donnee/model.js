@@ -46,7 +46,7 @@ Accessor.getAllEvents = function getAllEvents(result) {
     });
 };
 
-Accessor.getEvent = function getAllEvents(id,result) {
+Accessor.getEvent = function getAllEvents(id, result) {
     sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
 
         if (err) {
@@ -81,7 +81,7 @@ Accessor.deleteEvent = function (id, result) {
     });
 };
 Accessor.editEvent = function (id, name, description, date, color, result) {
-    sql.query("UPDATE event SET name = ?, date = ?, description = ?,  color = ? WHERE id = ?", [name,date,description,color,id], function (err, res) {
+    sql.query("UPDATE event SET name = ?, date = ?, description = ?,  color = ? WHERE id = ?", [name, date, description, color, id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -92,8 +92,8 @@ Accessor.editEvent = function (id, name, description, date, color, result) {
     });
 };
 
-Accessor.getCounter = function(result) {
-    sql.query("Select * from counter", function (err, res) {
+Accessor.getCounter = function (result) {
+    sql.query("Select * from counter where id = 1", function (err, res) {
 
         if (err) {
             console.log("Error : ", err);
@@ -104,9 +104,8 @@ Accessor.getCounter = function(result) {
         }
     });
 };
-/*
-Accessor.getEvent = function getAllEvents(id,result) {
-    sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
+Accessor.plusCounter = function (result) {
+    sql.query("Update counter set number = number+1 WHERE id = 1;", function (err, res) {
 
         if (err) {
             console.log("Error: ", err);
@@ -118,8 +117,8 @@ Accessor.getEvent = function getAllEvents(id,result) {
     });
 };
 
-Accessor.getEvent = function getAllEvents(id,result) {
-    sql.query("Select * from event WHERE id = ?", [id], function (err, res) {
+Accessor.minusCounter = function (result) {
+    sql.query("Update counter set number = number-1 WHERE id = 1;", function (err, res) {
 
         if (err) {
             console.log("Error: ", err);
@@ -129,6 +128,6 @@ Accessor.getEvent = function getAllEvents(id,result) {
             result(null, res);
         }
     });
-};*/
+};
 
 module.exports = Accessor;

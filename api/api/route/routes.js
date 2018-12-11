@@ -32,10 +32,10 @@ module.exports = function (app) {
     app.route('/counter')
         .get(controleur.get_counter);
 
-    /*app.route('/counter/plus')
+    app.route('/counter/plus')
         .get(controleur.plus_counter);
 
     app.route('/counter/minus')
-        .get(controleur.minus_counter);*/
+        .get(controleur.minus_counter);
 
 };
