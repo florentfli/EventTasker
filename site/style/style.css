@@ -41,8 +41,7 @@ html {
     font-weight: bold;
     font-size: 10em;
     font-style: italic;
-
-    border: 6px red;!important;
+    color:#424242;
     text-shadow: #424242 20px 20px 30px;
 }
 #container-counter{

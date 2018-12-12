@@ -10,6 +10,8 @@
 
         this.navigate = function () {
 
+            $("#navbarNav").removeClass('show');
+
             var hash = window.location.hash;
 
             if (!hash) {
