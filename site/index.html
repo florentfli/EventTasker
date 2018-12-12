@@ -187,14 +187,14 @@
     <div class="text-center">
         <div class="d-flex align-items-center justify-content-center mt-5">
 
-            <h1>55%</h1>
+            <h1 id="counter-number"></h1>
 
             <form id="form-counter-plus">
-                <input type="submit" class="btn btn-sm btn-primary" value="+">
+                <input type="submit" class="btn btn-sm btn-primary" id="btn-plus" onclick="this.blur();" value="+">
             </form>
 
             <form id="form-counter-minus">
-                <input type="submit" class="btn btn-sm btn-primary" value="-">
+                <input type="submit" class="btn btn-sm btn-primary" id="btn-minus" onclick="this.blur();" value="-">
             </form>
         </div>
     </div>
@@ -206,7 +206,7 @@
 <script src="accessor/URL.js"></script>
 <script src="accessor/UserDAO.js"></script>
 <script src="accessor/EventDAO.js"></script>
-<script src="accessor/counterDAO.js"></script>
+<script src="accessor/CounterDAO.js"></script>
 
 <script src="view/ViewListEvent.js"></script>
 <script src="view/ViewAddEvent.js"></script>

@@ -213,7 +213,7 @@ exports.plus_counter = function (req, res) {
                 res.send(err);
                 res.json(event);
             } else {
-                console.log('Event :' + JSON.stringify(event));
+                console.log('Plus counter : ' + JSON.stringify(event));
                 res.send(event);
             }
         });
@@ -234,7 +234,7 @@ exports.minus_counter = function (req, res) {
                 res.send(err);
                 res.json(event);
             } else {
-                console.log('Event :' + JSON.stringify(event));
+                console.log('Minus counter :' + JSON.stringify(event));
                 res.send(event);
             }
         });

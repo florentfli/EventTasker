@@ -37,3 +37,7 @@ html {
     line-height: 2;
     vertical-align: middle;
 }
+
+/*.btn:active:focus .btn:visited .btn:focus {
+    outline: none;
+}*/

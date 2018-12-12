@@ -1,12 +1,12 @@
 var CounterDAO = function () {
-
+    var instance = this;
     this.plusCounter = function (callback) {
         var url = API_URL + "/counter/plus";
         var request = new XMLHttpRequest();
 
         request.addEventListener("readystatechange", function () {
             if (request.readyState === 4 && request.status === 200) {
-                callback();
+                instance.getCounter(callback);
             }
         });
 
@@ -23,7 +23,7 @@ var CounterDAO = function () {
 
         request.addEventListener("readystatechange", function () {
             if (request.readyState === 4 && request.status === 200) {
-                callback();
+                instance.getCounter(callback);
             }
         });
 

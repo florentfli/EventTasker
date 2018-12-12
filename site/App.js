@@ -44,7 +44,12 @@
             }
             else if (hash.match(/^#counter/)) {
                 var viewCounter = new ViewCounter(actionPlusCounter,actionMinusCounter);
-                viewCounter.show();
+
+                var callbackGetCounter = function(res){
+                    viewCounter.show(res);
+                }
+
+                counterDAO.getCounter(callbackGetCounter);
             }
         };
 
@@ -89,11 +94,20 @@
         };
 
         var actionPlusCounter = function(){
+            var callbackPlus = function (res) {
+                document.getElementById('counter-number').innerText = JSON.parse(res)[0].number;
+            };
 
-        }
+            counterDAO.plusCounter(callbackPlus);
+        };
         var actionMinusCounter = function(){
+            var callbackMinus = function (res) {
+                document.getElementById('counter-number').innerText = JSON.parse(res)[0].number;
+                console.log('Minus');
+            };
 
-        }
+            counterDAO.minusCounter(callbackMinus);
+        };
 
         init();
     }
