@@ -37,7 +37,37 @@ html {
     line-height: 2;
     vertical-align: middle;
 }
+#counter-number{
+    font-weight: bold;
+    font-size: 10em;
+    font-style: italic;
 
-/*.btn:active:focus .btn:visited .btn:focus {
-    outline: none;
-}*/
+    border: 6px red;!important;
+    text-shadow: #424242 20px 20px 30px;
+}
+#container-counter{
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+#btn-plus{
+    background: limegreen;
+}
+#btn-minus{
+    background: #ff264d;
+}
+
+#btn-plus, #btn-minus{
+    font-weight: bold;
+    font-size: 2em;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-color: antiquewhite;
+    /*margin-top: 2em;*/
+}
+
+#pourcent{
+    font-style: italic;
+    font-size: 3rem;
+    font-weight: bolder;
+ }

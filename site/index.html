@@ -7,7 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
@@ -19,7 +20,8 @@
 
             <a class="navbar-brand" href="#" id="brand">M&F</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -47,12 +49,12 @@
                 <table class="table table-bordred text-center zero">
 
                     <thead>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Days to go</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                        <th>Details</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Days to go</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Details</th>
                     </thead>
 
                     <tbody id="table-event">
@@ -61,11 +63,10 @@
                 </table>
             </div>
 
-            <a class="btn btn-danger btn-circle mt-3" href="#add_event"><span class="glyphicon glyphicon-plus"></span></a>
+            <a class="btn btn-danger btn-circle mt-3" href="#add_event"><span
+                    class="glyphicon glyphicon-plus"></span></a>
         </div>
     </div>
-
-
 
 
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
@@ -119,10 +120,12 @@
 
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" id="btnDeleteEvent" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes
+                    <button type="button" id="btnDeleteEvent" class="btn btn-success"><span
+                            class="glyphicon glyphicon-ok-sign"></span> Yes
                     </button>
 
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-remove"></span> No
                     </button>
                 </div>
             </div>
@@ -163,7 +166,8 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea rows="3" class="form-control" id="description" aria-describedby="description" placeholder="Enter description"></textarea>
+                <textarea rows="3" class="form-control" id="description" aria-describedby="description"
+                          placeholder="Enter description"></textarea>
             </div>
             <div class="form-group">
                 <label for="color">Color</label>
@@ -184,17 +188,22 @@
 </script>
 
 <script type="text/html" id="page-counter">
+    <h1><i>How much Maddie is right :</i></h1>
     <div class="text-center">
-        <div class="d-flex align-items-center justify-content-center mt-5">
-
-            <h1 id="counter-number"></h1>
-
-            <form id="form-counter-plus">
-                <input type="submit" class="btn btn-sm btn-primary" id="btn-plus" onclick="this.blur();" value="+">
+        <div class="row">
+            <div class="col-12" id="container-counter">
+                <h1 id="counter-number" class="d-inline"></h1><h1 id="pourcent" class="d-inline">%</h1>
+            </div>
+        </div>
+        <div class="row">
+            <form id="form-counter-minus" class="col-6">
+                <button type="submit" class="btn btn-lg btn-primary" id="btn-minus" onclick="this.blur();">-</button>
             </form>
 
-            <form id="form-counter-minus">
-                <input type="submit" class="btn btn-sm btn-primary" id="btn-minus" onclick="this.blur();" value="-">
+            <form id="form-counter-plus" class="col-6">
+                <button type="submit" class="btn btn-lg btn-primary" id="btn-plus" onclick="this.blur();" value="+"></i>
+                    +
+                </button>
             </form>
         </div>
     </div>
