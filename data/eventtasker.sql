@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 12 déc. 2018 à 04:26
+-- Généré le :  mer. 12 déc. 2018 à 04:33
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `login`, `password`) VALUES
 (1, 'flo', '5f4dcc3b5aa765d61d8327deb882cf99'),
-(2, 'maddie', 'pawword');
+(2, 'maddie', 'A1FA59E79BBA1A38BB0684D3298C9DDD');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
